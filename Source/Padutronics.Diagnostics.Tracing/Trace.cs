@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace Padutronics.Diagnostics.Tracing;
@@ -31,6 +32,14 @@ public static class Trace
         ErrorIf(type, condition: true, message, memberName, filePath, lineNumber);
     }
 
+    public static void ErrorForEach<TItem>(Type type, IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        foreach (TItem item in items)
+        {
+            Error(type, messageFactory(item), memberName, filePath, lineNumber);
+        }
+    }
+
     public static void ErrorIf(Type type, bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ProcessEntryIf(type, condition, message, TraceSeverity.Error, memberName, filePath, lineNumber);
@@ -39,6 +48,14 @@ public static class Trace
     public static void Information(Type type, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         InformationIf(type, condition: true, message, memberName, filePath, lineNumber);
+    }
+
+    public static void InformationForEach<TItem>(Type type, IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        foreach (TItem item in items)
+        {
+            Information(type, messageFactory(item), memberName, filePath, lineNumber);
+        }
     }
 
     public static void InformationIf(Type type, bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
@@ -66,6 +83,14 @@ public static class Trace
     public static void Warning(Type type, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         WarningIf(type, condition: true, message, memberName, filePath, lineNumber);
+    }
+
+    public static void WarningForEach<TItem>(Type type, IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        foreach (TItem item in items)
+        {
+            Warning(type, messageFactory(item), memberName, filePath, lineNumber);
+        }
     }
 
     public static void WarningIf(Type type, bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)

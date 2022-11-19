@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace Padutronics.Diagnostics.Tracing;
@@ -24,6 +26,11 @@ public static class Trace<T>
         Trace.Error(typeof(T), message, memberName, filePath, lineNumber);
     }
 
+    public static void ErrorForEach<TItem>(IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        Trace.ErrorForEach(typeof(T), items, messageFactory, memberName, filePath, lineNumber);
+    }
+
     public static void ErrorIf(bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         Trace.ErrorIf(typeof(T), condition, message, memberName, filePath, lineNumber);
@@ -34,6 +41,11 @@ public static class Trace<T>
         Trace.Information(typeof(T), message, memberName, filePath, lineNumber);
     }
 
+    public static void InformationForEach<TItem>(IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        Trace.InformationForEach(typeof(T), items, messageFactory, memberName, filePath, lineNumber);
+    }
+
     public static void InformationIf(bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         Trace.InformationIf(typeof(T), condition, message, memberName, filePath, lineNumber);
@@ -42,6 +54,11 @@ public static class Trace<T>
     public static void Warning(string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         Trace.Warning(typeof(T), message, memberName, filePath, lineNumber);
+    }
+
+    public static void WarningForEach<TItem>(IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        Trace.WarningForEach(typeof(T), items, messageFactory, memberName, filePath, lineNumber);
     }
 
     public static void WarningIf(bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)

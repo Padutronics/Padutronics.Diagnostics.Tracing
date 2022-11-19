@@ -1,4 +1,4 @@
-namespace Padutronics.Diagnostics.Tracing;
+namespace Padutronics.Diagnostics.Tracing.Filters;
 
 public interface ITraceFilter
 {

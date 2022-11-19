@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Padutronics.Diagnostics.Tracing;
+namespace Padutronics.Diagnostics.Tracing.Filters;
 
 public sealed class SeverityTraceFilter : ITraceFilter
 {

@@ -1,3 +1,5 @@
+using Padutronics.Diagnostics.Tracing.Filters;
+
 namespace Padutronics.Diagnostics.Tracing;
 
 public abstract class TraceListener : ITraceListener

@@ -67,7 +67,7 @@ public static class Trace
 
     private static void ProcessEntryIf(Type type, bool condition, string message, TraceSeverity severity, string memberName, string filePath, int lineNumber)
     {
-        ITraceProcessor? traceProcessor = TraceOptions.TraceProcessor;
+        ITraceProcessor? traceProcessor = TraceProcessorOptions.TraceProcessor;
         if (traceProcessor is not null && condition)
         {
             CallerInfo caller = CallerInfo.ForType(type, memberName, filePath, lineNumber);

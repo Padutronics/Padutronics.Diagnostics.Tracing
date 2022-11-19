@@ -7,7 +7,17 @@ public static class Trace
 {
     public static void Call(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        ProcessEntry(type, message, memberName, filePath, lineNumber);
+        ProcessEntry(type, $"=><= {message}", memberName, filePath, lineNumber);
+    }
+
+    public static void CallEnd(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        ProcessEntry(type, $"<= {message}", memberName, filePath, lineNumber);
+    }
+
+    public static void CallStart(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        ProcessEntry(type, $"=> {message}", memberName, filePath, lineNumber);
     }
 
     private static void ProcessEntry(Type type, string message, string memberName, string filePath, int lineNumber)

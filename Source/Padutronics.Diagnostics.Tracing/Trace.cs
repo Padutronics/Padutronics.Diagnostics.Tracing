@@ -10,19 +10,19 @@ public static class Trace
 
     public static void Call(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        ProcessEntryIf(type, condition: true, $"=><= {message}", TraceSeverity.Information, memberName, filePath, lineNumber);
+        ProcessEntryIf(type, condition: true, $"{TraceFormatOptions.CallMessagePrefix}{TraceFormatOptions.CallMessageDelimiter}{message}", TraceSeverity.Information, memberName, filePath, lineNumber);
     }
 
     public static void CallEnd(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         indenter.Unindent();
 
-        ProcessEntryIf(type, condition: true, $"<= {message}", TraceSeverity.Information, memberName, filePath, lineNumber);
+        ProcessEntryIf(type, condition: true, $"{TraceFormatOptions.CallEndMessagePrefix}{TraceFormatOptions.CallEndMessageDelimiter}{message}", TraceSeverity.Information, memberName, filePath, lineNumber);
     }
 
     public static void CallStart(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        ProcessEntryIf(type, condition: true, $"=> {message}", TraceSeverity.Information, memberName, filePath, lineNumber);
+        ProcessEntryIf(type, condition: true, $"{TraceFormatOptions.CallStartMessagePrefix}{TraceFormatOptions.CallStartMessageDelimiter}{message}", TraceSeverity.Information, memberName, filePath, lineNumber);
 
         indenter.Indent();
     }

@@ -2,16 +2,16 @@ namespace Padutronics.Diagnostics.Tracing;
 
 public sealed class TraceEntry
 {
-    public TraceEntry(CallerInfo caller, FormatInfo format, string message)
+    public TraceEntry(CallerInfo caller, FormatInfo format, TraceInfo trace)
     {
         Caller = caller;
         Format = format;
-        Message = message;
+        Trace = trace;
     }
 
     public CallerInfo Caller { get; }
 
     public FormatInfo Format { get; }
 
-    public string Message { get; }
+    public TraceInfo Trace { get; }
 }

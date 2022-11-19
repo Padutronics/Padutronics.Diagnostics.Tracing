@@ -18,4 +18,19 @@ public static class Trace<T>
     {
         Trace.CallStart(typeof(T), message, memberName, filePath, lineNumber);
     }
+
+    public static void Error(string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        Trace.Error(typeof(T), message, memberName, filePath, lineNumber);
+    }
+
+    public static void Information(string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        Trace.Information(typeof(T), message, memberName, filePath, lineNumber);
+    }
+
+    public static void Warning(string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+    {
+        Trace.Warning(typeof(T), message, memberName, filePath, lineNumber);
+    }
 }

@@ -1,4 +1,4 @@
-namespace Padutronics.Diagnostics.Tracing;
+namespace Padutronics.Diagnostics.Tracing.Processors;
 
 public static class TraceOptions
 {

@@ -1,7 +1,7 @@
 using Padutronics.Diagnostics.Tracing.Listeners;
 using System;
 
-namespace Padutronics.Diagnostics.Tracing;
+namespace Padutronics.Diagnostics.Tracing.Processors;
 
 public interface ITraceProcessor : IDisposable
 {

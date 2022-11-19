@@ -1,4 +1,5 @@
 using Padutronics.Diagnostics.Tracing.Formatting;
+using Padutronics.Diagnostics.Tracing.Processors;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;

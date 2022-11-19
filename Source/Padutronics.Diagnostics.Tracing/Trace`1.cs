@@ -11,72 +11,72 @@ public static class Trace<T>
     [Conditional(ConditionalValues.Debug)]
     public static void Call(string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.Call(typeof(T), message, memberName, filePath, lineNumber);
+        Trace.Call<T>(message, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void CallEnd(string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.CallEnd(typeof(T), message, memberName, filePath, lineNumber);
+        Trace.CallEnd<T>(message, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void CallStart(string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.CallStart(typeof(T), message, memberName, filePath, lineNumber);
+        Trace.CallStart<T>(message, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void Error(string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.Error(typeof(T), message, memberName, filePath, lineNumber);
+        Trace.Error<T>(message, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void ErrorForEach<TItem>(IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.ErrorForEach(typeof(T), items, messageFactory, memberName, filePath, lineNumber);
+        Trace.ErrorForEach<TItem, T>(items, messageFactory, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void ErrorIf(bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.ErrorIf(typeof(T), condition, message, memberName, filePath, lineNumber);
+        Trace.ErrorIf<T>(condition, message, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void Information(string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.Information(typeof(T), message, memberName, filePath, lineNumber);
+        Trace.Information<T>(message, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void InformationForEach<TItem>(IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.InformationForEach(typeof(T), items, messageFactory, memberName, filePath, lineNumber);
+        Trace.InformationForEach<TItem, T>(items, messageFactory, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void InformationIf(bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.InformationIf(typeof(T), condition, message, memberName, filePath, lineNumber);
+        Trace.InformationIf<T>(condition, message, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void Warning(string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.Warning(typeof(T), message, memberName, filePath, lineNumber);
+        Trace.Warning<T>(message, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void WarningForEach<TItem>(IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.WarningForEach(typeof(T), items, messageFactory, memberName, filePath, lineNumber);
+        Trace.WarningForEach<TItem, T>(items, messageFactory, memberName, filePath, lineNumber);
     }
 
     [Conditional(ConditionalValues.Debug)]
     public static void WarningIf(bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.WarningIf(typeof(T), condition, message, memberName, filePath, lineNumber);
+        Trace.WarningIf<T>(condition, message, memberName, filePath, lineNumber);
     }
 }

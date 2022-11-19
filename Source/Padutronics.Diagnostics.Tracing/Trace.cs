@@ -1,7 +1,9 @@
+using Padutronics.Diagnostics.Debugging;
 using Padutronics.Diagnostics.Tracing.Formatting;
 using Padutronics.Diagnostics.Tracing.Processors;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Padutronics.Diagnostics.Tracing;
@@ -10,11 +12,13 @@ public static class Trace
 {
     private static readonly IIndenter indenter = new Indenter();
 
+    [Conditional(ConditionalValues.Debug)]
     public static void Call(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ProcessEntryIf(type, condition: true, $"{TraceFormatOptions.CallMessagePrefix}{TraceFormatOptions.CallMessageDelimiter}{message}", TraceSeverity.Information, memberName, filePath, lineNumber);
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void CallEnd(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         indenter.Unindent();
@@ -22,6 +26,7 @@ public static class Trace
         ProcessEntryIf(type, condition: true, $"{TraceFormatOptions.CallEndMessagePrefix}{TraceFormatOptions.CallEndMessageDelimiter}{message}", TraceSeverity.Information, memberName, filePath, lineNumber);
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void CallStart(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ProcessEntryIf(type, condition: true, $"{TraceFormatOptions.CallStartMessagePrefix}{TraceFormatOptions.CallStartMessageDelimiter}{message}", TraceSeverity.Information, memberName, filePath, lineNumber);
@@ -29,11 +34,13 @@ public static class Trace
         indenter.Indent();
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void Error(Type type, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ErrorIf(type, condition: true, message, memberName, filePath, lineNumber);
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void ErrorForEach<TItem>(Type type, IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         foreach (TItem item in items)
@@ -42,16 +49,19 @@ public static class Trace
         }
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void ErrorIf(Type type, bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ProcessEntryIf(type, condition, message, TraceSeverity.Error, memberName, filePath, lineNumber);
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void Information(Type type, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         InformationIf(type, condition: true, message, memberName, filePath, lineNumber);
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void InformationForEach<TItem>(Type type, IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         foreach (TItem item in items)
@@ -60,6 +70,7 @@ public static class Trace
         }
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void InformationIf(Type type, bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ProcessEntryIf(type, condition, message, TraceSeverity.Information, memberName, filePath, lineNumber);
@@ -82,11 +93,13 @@ public static class Trace
         }
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void Warning(Type type, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         WarningIf(type, condition: true, message, memberName, filePath, lineNumber);
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void WarningForEach<TItem>(Type type, IEnumerable<TItem> items, Func<TItem, string> messageFactory, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         foreach (TItem item in items)
@@ -95,6 +108,7 @@ public static class Trace
         }
     }
 
+    [Conditional(ConditionalValues.Debug)]
     public static void WarningIf(Type type, bool condition, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ProcessEntryIf(type, condition, message, TraceSeverity.Warning, memberName, filePath, lineNumber);

@@ -43,10 +43,11 @@ public static class Trace
         {
             CallerInfo caller = CallerInfo.ForType(type, memberName, filePath, lineNumber);
 
+            var environment = new EnvironmentInfo(DateTime.UtcNow);
             var format = new FormatInfo(indenter.IndentLevel);
             var trace = new TraceInfo(message, severity);
 
-            var entry = new TraceEntry(caller, format, trace);
+            var entry = new TraceEntry(trace, caller, environment, format);
 
             traceProcessor.AddTrace(entry);
         }

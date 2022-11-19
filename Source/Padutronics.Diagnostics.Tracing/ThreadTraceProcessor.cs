@@ -103,7 +103,10 @@ public sealed class ThreadTraceProcessor : DisposableObject, ITraceProcessor
             {
                 foreach (ITraceListener listener in listeners)
                 {
-                    listener.ProcessTrace(entry);
+                    if (listener.Filter.ShouldTrace(entry))
+                    {
+                        listener.ProcessTrace(entry);
+                    }
                 }
             }
         }

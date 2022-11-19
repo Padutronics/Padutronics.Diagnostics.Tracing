@@ -4,9 +4,10 @@ namespace Padutronics.Diagnostics.Tracing;
 
 public sealed class CallerInfo
 {
-    public CallerInfo(string @namespace, string typeName, string memberName, string filePath)
+    public CallerInfo(string @namespace, string typeName, string memberName, string filePath, int lineNumber)
     {
         FilePath = filePath;
+        LineNumber = lineNumber;
         MemberName = memberName;
         Namespace = @namespace;
         TypeName = typeName;
@@ -14,13 +15,15 @@ public sealed class CallerInfo
 
     public string FilePath { get; }
 
+    public int LineNumber { get; }
+
     public string MemberName { get; }
 
     public string Namespace { get; }
 
     public string TypeName { get; }
 
-    public static CallerInfo ForType(Type type, string memberName, string filePath)
+    public static CallerInfo ForType(Type type, string memberName, string filePath, int lineNumber)
     {
         string @namespace = string.Empty;
         string typeName = type.FullName ?? throw new Exception("Type name is null.");
@@ -32,6 +35,6 @@ public sealed class CallerInfo
             typeName = typeName[(lastDotIndex + 1)..];
         }
 
-        return new CallerInfo(@namespace, typeName, memberName, filePath);
+        return new CallerInfo(@namespace, typeName, memberName, filePath, lineNumber);
     }
 }

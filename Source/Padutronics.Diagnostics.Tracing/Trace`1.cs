@@ -4,8 +4,8 @@ namespace Padutronics.Diagnostics.Tracing;
 
 public static class Trace<T>
 {
-    public static void Call(string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "")
+    public static void Call(string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
-        Trace.Call(typeof(T), message, memberName, filePath);
+        Trace.Call(typeof(T), message, memberName, filePath, lineNumber);
     }
 }

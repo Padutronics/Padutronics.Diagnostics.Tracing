@@ -5,6 +5,8 @@ namespace Padutronics.Diagnostics.Tracing;
 
 public static class Trace
 {
+    private static readonly IIndenter indenter = new Indenter();
+
     public static void Call(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ProcessEntry(type, $"=><= {message}", memberName, filePath, lineNumber);
@@ -12,12 +14,16 @@ public static class Trace
 
     public static void CallEnd(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
+        indenter.Unindent();
+
         ProcessEntry(type, $"<= {message}", memberName, filePath, lineNumber);
     }
 
     public static void CallStart(Type type, string message = "", [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
     {
         ProcessEntry(type, $"=> {message}", memberName, filePath, lineNumber);
+
+        indenter.Indent();
     }
 
     private static void ProcessEntry(Type type, string message, string memberName, string filePath, int lineNumber)
@@ -27,7 +33,9 @@ public static class Trace
         {
             CallerInfo caller = CallerInfo.ForType(type, memberName, filePath, lineNumber);
 
-            var entry = new TraceEntry(caller, message);
+            var format = new FormatInfo(indenter.IndentLevel);
+
+            var entry = new TraceEntry(caller, format, message);
 
             traceProcessor.AddTrace(entry);
         }

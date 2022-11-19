@@ -1,6 +1,6 @@
 using Padutronics.Diagnostics.Tracing.Filters;
 
-namespace Padutronics.Diagnostics.Tracing;
+namespace Padutronics.Diagnostics.Tracing.Listeners;
 
 public interface ITraceListener
 {
